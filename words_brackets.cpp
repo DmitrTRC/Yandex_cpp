@@ -12,8 +12,10 @@ bool get_next_word(const string &source_string, string::size_type &head, string 
     bool result = false;
     result_string = "";
     if (head < source_string.length()) {
+        result = true;
         if (isspace(source_string[head])) {
             head++;
+            if (head == source_string.length() - 1) result = false;
         } else {
             result_string.push_back(source_string[head++]);
         }
@@ -24,7 +26,7 @@ bool get_next_word(const string &source_string, string::size_type &head, string 
             } else break;
 
         }
-        result = true;
+
     }
     return result;
 }
