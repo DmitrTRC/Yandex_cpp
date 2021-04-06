@@ -11,21 +11,11 @@ using namespace std;
 bool get_next_word(const string &source_string, string::size_type &head, string &result_string) {
     bool result = false;
     result_string = "";
-    if (head < source_string.length()) {
-        result = true;
-        if (isspace(source_string[head])) {
-            head++;
-        if (source_string[head] == ' ') head ++;
+    if (not source_string.empty()){
+        if ( not isspace(source_string[head])){
+            //For cycle
         } else {
-            result_string.push_back(source_string[head++]);
-
-            for (; head < source_string.length(); head++) {
-                if (not isspace(source_string[head])) {
-                    result_string.push_back(source_string[head]);
-
-                } else break;
-
-            }
+            // First space got!
         }
     }
     return result;
