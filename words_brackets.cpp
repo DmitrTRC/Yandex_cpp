@@ -6,15 +6,19 @@
 
 using namespace std;
 
-int main(){
+bool is_space_word(const string &src, int index) {
+    return  src [index] == ' ' and src [index +1] == ' ';
+}
+
+int main() {
     string query;
-    string target_str ="[";
+    string target_str = "[";
     getline(cin, query);
 
-    for ( auto index = 0; index < query.length(); index++){
-        if ( query[index] != ' '){
+    for (auto index = 0; index < query.length(); index++) {
+        if (query[index] != ' ') {
             target_str += query[index];
-        }else{
+        } else {
             target_str += "]";
         }
     }
