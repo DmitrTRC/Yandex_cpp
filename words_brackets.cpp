@@ -39,7 +39,7 @@ int main() {
     auto count(0);
     while (get_next_word(query, head, next_word)) {
         count++;
-        cout << print_word(next_word);
+        cout << print_word(next_word) << endl;
     }
     cout << endl;
 }
