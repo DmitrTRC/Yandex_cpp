@@ -15,19 +15,18 @@ bool get_next_word(const string &source_string, string::size_type &head, string 
         result = true;
         if (isspace(source_string[head])) {
             head++;
-
+        if (source_string[head] == ' ') head ++;
         } else {
             result_string.push_back(source_string[head++]);
+
+            for (; head < source_string.length(); head++) {
+                if (not isspace(source_string[head])) {
+                    result_string.push_back(source_string[head]);
+
+                } else break;
+
+            }
         }
-
-        for (; head < source_string.length(); head++) {
-            if (not isspace(source_string[head])) {
-                result_string.push_back(source_string[head]);
-
-            } else break;
-
-        }
-
     }
     return result;
 }
