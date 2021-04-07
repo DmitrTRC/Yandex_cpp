@@ -15,6 +15,7 @@ bool get_next_word(const string &source_string, string::size_type &head, string 
         if ( not isspace(source_string[head])){
             //For cycle
         } else {
+            cout << "Got 1 space" << endl;
             // First space got!
         }
     }
