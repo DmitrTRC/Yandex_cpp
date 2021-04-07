@@ -23,7 +23,7 @@ bool get_next_word(const string &source_string, string::size_type &head, string 
             cout << "Got 1-st space" << endl;
             head++;
             // First space got!
-            if ( source_string[head++] == ' '){
+            if ( source_string[head] == ' '){
             cout << "Got 2-nd space" << endl;
             head++;
             }
