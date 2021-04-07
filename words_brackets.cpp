@@ -7,6 +7,14 @@
 
 using namespace std;
 
+string read_word(const string &source_string, int &head) {
+    string result;
+    for (; head < source_string.length(); head++) {
+        if (not isspace(source_string[head])) result.push_back(source_string[head]);
+        else break;
+    }
+    return result;
+}
 
 bool get_next_word(const string &source_string, string::size_type &head, string &result_string) {
     bool result = false;
@@ -14,7 +22,7 @@ bool get_next_word(const string &source_string, string::size_type &head, string 
     if (not source_string.empty() and head < source_string.length()) {
         result = true;
         if (not isspace(source_string[head])) {
-            for (;head < source_string.length(); head++){
+            for (; head < source_string.length(); head++) {
                 if (not isspace(source_string[head])) {
                     result_string.push_back(source_string[head]);
                 } else break;
@@ -23,9 +31,9 @@ bool get_next_word(const string &source_string, string::size_type &head, string 
             cout << "Got 1-st space" << endl;
             head++;
             // First space got!
-            if ( source_string[head] == ' '){
-            cout << "Got 2-nd space" << endl;
-            head++;
+            if (source_string[head] == ' ') {
+                cout << "Got 2-nd space" << endl;
+                head++;
             }
         }
     }
