@@ -16,29 +16,32 @@ string read_word(const string &source_string, int &head) {
     return result;
 }
 
-bool get_next_word(const string &source_string, string::size_type &head, string &result_string) {
-    bool result = false;
-    result_string = "";
-    if (not source_string.empty() and head < source_string.length()) {
-        result = true;
-        if (not isspace(source_string[head])) {
-            for (; head < source_string.length(); head++) {
-                if (not isspace(source_string[head])) {
-                    result_string.push_back(source_string[head]);
-                } else break;
-            }
-        } else {
-            cout << "Got 1-st space" << endl;
-            head++;
-            // First space got!
-            if (source_string[head] == ' ') {
-                cout << "Got 2-nd space" << endl;
-                head++;
-            }
-        }
-    }
+bool get_next_word(const string &source_string, string::size_type &head, string &result_string)Х
+{
     return result;
 }
+//    bool result = false;
+//    result_string = "";
+//    if (not source_string.empty() and head < source_string.length()) {
+//        result = true;
+//        if (not isspace(source_string[head])) {
+//            for (; head < source_string.length(); head++) {
+//                if (not isspace(source_string[head])) {
+//                    result_string.push_back(source_string[head]);
+//                } else break;
+//            }
+//        } else {
+//            cout << "Got 1-st space" << endl;
+//            head++;
+//            // First space got!
+//            if (source_string[head] == ' ') {
+//                cout << "Got 2-nd space" << endl;
+//                head++;
+//            }
+//        }
+//    }
+//    return result;
+//}
 
 string print_word(const string &word) {
     return "[" + word + "]";
