@@ -5,8 +5,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <algorithm>
 #include <iterator>
+#include <vector>
 
 using namespace std;
 
@@ -19,59 +19,36 @@ void splits(const std::string &str, Container &cont, char delim = ' ') {
     }
 }
 
+
 string read_word(const string &source_string, int &head) {
     string result;
-    for (; head < source_string.length(); head++) {
-        if (not isspace(source_string[head])) result.push_back(source_string[head]);
+    string srs = source_string;
+    for (; head < srs.length(); head++) {
+        if (not isspace(srs[head])) result.push_back(srs[head]);
         else break;
     }
     return result;
 }
 
-bool get_next_word(const string &source_string, string::size_type &head, string &result_string)
+void print_tokens(const string &source_string) {
+    vector<string> accum;
 
-Х
-{
-return
-result;
-}
-//    bool result = false;
-//    result_string = "";
-//    if (not source_string.empty() and head < source_string.length()) {
-//        result = true;
-//        if (not isspace(source_string[head])) {
-//            for (; head < source_string.length(); head++) {
-//                if (not isspace(source_string[head])) {
-//                    result_string.push_back(source_string[head]);
-//                } else break;
-//            }
-//        } else {
-//            cout << "Got 1-st space" << endl;
-//            head++;
-//            // First space got!
-//            if (source_string[head] == ' ') {
-//                cout << "Got 2-nd space" << endl;
-//                head++;
-//            }
-//        }
-//    }
-//    return result;
-//}
+    splits(source_string, accum);
 
-string print_word(const string &word) {
-    return "[" + word + "]";
+    for (string &word : accum) {
+        cout << "[" << word << "]" << endl;
+    }
 }
+
 
 int main() {
     string query;
     getline(cin, query);
-    string::size_type head(0);
-    string next_word;
-    bool no_words = true;
-    while (get_next_word(query, head, next_word)) {
-        cout << print_word(next_word) << endl;
-        no_words = false;
+    if (query.empty()) {
+        cout << "[]" << endl;
+    } else {
+        print_tokens(query);
     }
-    if (no_words) cout << "[]" << endl;
+    return 0;
 }
 
