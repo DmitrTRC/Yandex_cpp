@@ -4,8 +4,20 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <algorithm>
+#include <iterator>
 
 using namespace std;
+
+template<class Container>
+void splits(const std::string &str, Container &cont, char delim = ' ') {
+    std::stringstream ss(str);
+    std::string token;
+    while (std::getline(ss, token, delim)) {
+        cont.push_back(token);
+    }
+}
 
 string read_word(const string &source_string, int &head) {
     string result;
@@ -16,9 +28,12 @@ string read_word(const string &source_string, int &head) {
     return result;
 }
 
-bool get_next_word(const string &source_string, string::size_type &head, string &result_string)Х
+bool get_next_word(const string &source_string, string::size_type &head, string &result_string)
+
+Х
 {
-    return result;
+return
+result;
 }
 //    bool result = false;
 //    result_string = "";
