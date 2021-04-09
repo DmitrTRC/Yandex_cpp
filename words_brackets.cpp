@@ -20,16 +20,6 @@ void splits(const std::string &str, Container &cont, char delim = ' ') {
 }
 
 
-string read_word(const string &source_string, int &head) {
-    string result;
-    string srs = source_string;
-    for (; head < srs.length(); head++) {
-        if (not isspace(srs[head])) result.push_back(srs[head]);
-        else break;
-    }
-    return result;
-}
-
 void print_tokens(const string &source_string) {
     vector<string> accum;
 
@@ -52,3 +42,19 @@ int main() {
     return 0;
 }
 
+
+//int main() {
+//    string query;
+//    getline(cin, query);
+//
+//    string word;
+//    for (int i = 0; i < query.size(); ++i) {
+//        if (query[i] == ' ') {
+//            cout << '[' << word << ']' << endl;
+//            word = ""s;
+//        } else {
+//            word += query[i];
+//        }
+//    }
+//    cout << '[' << word << ']' << endl;
+//}
