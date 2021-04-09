@@ -10,7 +10,7 @@
 
 using namespace std;
 
-template<class Container>
+    template<class Container>
 void splits(const std::string &str, Container &cont, char delim = ' ') {
     std::stringstream ss(str);
     std::string token;
