@@ -3,16 +3,33 @@
 //
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
+
+void split(const string &source_string, vector<string> &words) {
+    string word;
+    for (auto(letter) : source_string) {
+        if (letter == ' ') {
+            words.push_back(word);
+            word.clear();
+        } else {
+            word += letter;
+        }
+    }
+}
+
+void print_list(const vector<string> list) {
+    for (auto(item) : list) {
+        cout << "[" << item << "]" << endl;
+    }
+}
+
 int main() {
     string query;
     getline(cin, query);
+    vector<string> words;
+    split(query, words);
+    print_list(words);
 
-    for (int i = 0; i < query.size(); ++i) {
-        if (query[i] == ' ') {
-            cout << i << endl;
-        }
-    }
-    cout << query.size() << endl;
 }
