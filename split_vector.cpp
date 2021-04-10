@@ -9,7 +9,7 @@ using namespace std;
 
 void split(const string &source_string, vector<string> &words) {
     string word;
-    for (auto(letter) : source_string) {
+    for (char letter : source_string) {
         if (isspace(letter)) {
             words.push_back(word);
             word.clear();
@@ -21,7 +21,7 @@ void split(const string &source_string, vector<string> &words) {
 }
 
 void print_list(vector<string> &list) {
-    for (const auto(&item) : list) {
+    for (const string &item : list) {
         cout << "[" << item << "]" << endl;
     }
 }
