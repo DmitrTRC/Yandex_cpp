@@ -7,3 +7,4 @@ add_executable(Yandex_cpp
         words_brackets.cpp split_vector.cpp)
 
 add_executable(split_vector split_vector.cpp)
+add_executable(words_brackets words_brackets.cpp)

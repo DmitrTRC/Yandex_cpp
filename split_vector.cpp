@@ -9,14 +9,15 @@ using namespace std;
 
 void split(const string &source_string, vector<string> &words) {
     string word;
-    for (int i =0; i < source_string.size(); i++) {
-        if (source_string[i] == ' ') {
+    for (auto(letter) : source_string) {
+        if (isspace(letter)) {
             words.push_back(word);
             word.clear();
         } else {
-            word += source_string[i];
+            word += letter;
         }
     }
+    words.push_back(word);
 }
 
 void print_list(vector<string> &list) {
@@ -30,7 +31,9 @@ int main() {
     string query;
     getline(cin, query);
     vector<string> words;
+    string word;
     split(query, words);
     print_list(words);
+
 
 }
