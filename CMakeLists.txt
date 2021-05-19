@@ -1,10 +1,7 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.19)
 project(Yandex_cpp)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Yandex_cpp
-        words_brackets.cpp split_vector.cpp)
-
-add_executable(split_vector split_vector.cpp)
-add_executable(words_brackets words_brackets.cpp)
+add_executable(split_vector srs/split_vector.cpp)
+add_executable(words_brackets srs/words_brackets.cpp)
