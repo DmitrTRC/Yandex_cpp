@@ -34,6 +34,4 @@ int main() {
     string word;
     split(query, words);
     print_list(words);
-
-
 }

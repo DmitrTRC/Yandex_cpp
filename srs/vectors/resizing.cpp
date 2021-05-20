@@ -20,6 +20,17 @@ WORRY_COUNT: узнать количество беспокоящихся люд
 
 using namespace std;
 
+vector<string> split_line(std::string line, const std::string &delimiter = " ") {
+    vector<string> com_line = {};
+    size_t pos = 0;
+    std::string token;
+    while ((pos = line.find(delimiter)) != std::string::npos) {
+        token = line.substr(0, pos);
+        com_line.push_back(token);
+        line.erase(0, pos + delimiter.length());
+    }
+    return com_line;
+}
 
 u_long get_worries_count(const vector<bool> &item_list) {
     u_long count{0};
@@ -34,7 +45,7 @@ u_long get_worries_count(const vector<bool> &item_list) {
 int command_manager(const string &command, vector<bool> array) {
     int result{0};
     const std::unordered_map<std::string, std::function<void()>> command_table{
-            {"WORRY_COUNT", [&]() { cout << get_worries_count(array) << endl; }},
+            {"WORRY_COUNT", [&]() { cout << get_worries_count(arr) << endl; }},
             {"WORRY",       [&]() { cout << "Worry [i] " << endl; }},
             {"QUIET",       [&]() { cout << "Quiet " << endl; }},
             {"COME",        [&]() { cout << "COME" << endl; }},
