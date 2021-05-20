@@ -20,6 +20,7 @@ WORRY_COUNT: узнать количество беспокоящихся люд
 
 using namespace std;
 
+
 u_long get_worries_count(const vector<bool> &item_list) {
     u_long count{0};
     for (auto item:item_list) {
@@ -31,56 +32,33 @@ u_long get_worries_count(const vector<bool> &item_list) {
 }
 
 int command_manager(const string &command) {
-
-}
-
-int main() {
-    vector<bool> people_list;
-    int query_num;
-    cin >> query_num;
-
-    // Command selection
-
-    const std::unordered_map<std::string, std::function<void()>> m{
+    int result{0};
+    const std::unordered_map<std::string, std::function<void()>> command_table{
             {"WORRY_COUNT", [&]() { cout << "Worry count" << endl; }},
             {"WORRY",       [&]() { cout << "Worry [i] " << endl; }},
             {"QUIET",       [&]() { cout << "Quiet " << endl; }},
             {"COME",        [&]() { cout << "COME" << endl; }},
     };
 
-
-    const auto end = m.end();
-    std::vector<std::string> strings{"one", "two", "three", "foobar"};
-    for (const auto &s : strings) {
-        auto it = m.find(s);
-        if (it != end) {
-            it->second();
-        } else {
-            result = -1;
-        }
-        std::cout << s << " " << result << std::endl;
+    auto item = command_table.find(command);
+    if (item != command_table.end()) {
+        item->second();
+    } else {
+        result = -1;
     }
+    return result;
 }
 
-for (
-int i = 0;
-i<query_num;
-++i) {
-string operation_code;
-cin >>
-operation_code;
-
-
-if (operation_code == "WORRY_COUNT"s) {
-// обработка запроса WORRY_COUNT
-std::cout <<
-get_worries_count(people_list)
-<<
-std::endl;
-} else {
-
-// обработка остальных запросов
-
-}
-}
+int main() {
+    vector<bool> people_list;
+    int query_num;
+    cin >> query_num;
+    // Command selection
+    for (int i = 0; i < query_num; ++i) {
+        string operation_code;
+        cin >> operation_code;
+        if (command_manager(operation_code)) {
+            cout << "Unknown operation" << endl;
+        }
+    }
 }
