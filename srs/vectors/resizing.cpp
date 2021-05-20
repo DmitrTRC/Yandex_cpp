@@ -43,14 +43,16 @@ u_long get_worries_count(const vector<bool> &item_list) {
     return count;
 }
 
-int command_manager(const string &command, vector<bool> array) {
+int command_manager(const string &command, vector<bool> queue_array) {
     int result{0};
     vector<string> command_line = split_line(command);
     const std::unordered_map<std::string, std::function<void()>> command_table{
-            {"WORRY_COUNT", [&]() { cout << get_worries_count(array) << endl; }},
-            {"WORRY",       [&]() { cout << "Worry [i] " << endl; }},
-            {"QUIET",       [&]() { cout << "Quiet " << endl; }},
-            {"COME",        [&]() { cout << "COME" << endl; }},
+        {"WORRY_COUNT", [&]() { cout << get_worries_count(queue_array) << endl; }},
+        {"WORRY",       [&]() { queue_array.at(stoi(command_line.at(1))) = true; }},
+        {"QUIET",       [&]() { queue_array.at(stoi(command_line.at(1))) = false; }},
+        {"COME",        [&]() {
+            queue_array.resize(queue_array.size() + stoi(command_line.at(1)), false);
+        }},
     };
 
     auto item = command_table.find(command_line.at(0));
