@@ -29,7 +29,8 @@ vector<string> split_line(std::string line, const std::string &delimiter = " ") 
         com_line.push_back(token);
         line.erase(0, pos + delimiter.length());
     }
-    if (com_line.empty()) { com_line.push_back(line); }
+    com_line.push_back(line);
+
     return com_line;
 }
 
@@ -47,12 +48,12 @@ int command_manager(const string &command, vector<bool> queue_array) {
     int result{0};
     vector<string> command_line = split_line(command);
     const std::unordered_map<std::string, std::function<void()>> command_table{
-        {"WORRY_COUNT", [&]() { cout << get_worries_count(queue_array) << endl; }},
-        {"WORRY",       [&]() { queue_array.at(stoi(command_line.at(1))) = true; }},
-        {"QUIET",       [&]() { queue_array.at(stoi(command_line.at(1))) = false; }},
-        {"COME",        [&]() {
-            queue_array.resize(queue_array.size() + stoi(command_line.at(1)), false);
-        }},
+            {"WORRY_COUNT", [&]() { cout << get_worries_count(queue_array) << endl; }},
+            {"WORRY",       [&]() { queue_array.at(stoi(command_line.at(1))) = true; }},
+            {"QUIET",       [&]() { queue_array.at(stoi(command_line.at(1))) = false; }},
+            {"COME",        [&]() {
+                queue_array.resize(queue_array.size() + stoi(command_line.at(1)), false);
+            }},
     };
 
     auto item = command_table.find(command_line.at(0));
@@ -71,7 +72,7 @@ int main() {
     // Command selection
     for (int i = 0; i < query_num; ++i) {
         string operation_code;
-        cin >> operation_code;
+        std::getline(cin >> ws, operation_code);
         if (command_manager(operation_code, people_list)) {
             cout << "Unknown operation" << endl;
         }
