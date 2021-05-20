@@ -12,7 +12,7 @@ WORRY_COUNT: узнать количество беспокоящихся люд
 Реализовать операции WORRY, QUIET и COME позволят простые действия с вектором. Для реализации WORRY_COUNT понадобится честный подсчёт указанного числа.
 
  */
-
+#include <functional>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -44,7 +44,7 @@ u_long get_worries_count(const vector<bool> &item_list) {
     return count;
 }
 
-int command_manager(const string &command, vector<bool> queue_array) {
+int command_manager(const string &command, vector<bool> &queue_array) {
     int result{0};
     vector<string> command_line = split_line(command);
     const std::unordered_map<std::string, std::function<void()>> command_table{
