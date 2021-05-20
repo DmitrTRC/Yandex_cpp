@@ -31,10 +31,10 @@ u_long get_worries_count(const vector<bool> &item_list) {
     return count;
 }
 
-int command_manager(const string &command) {
+int command_manager(const string &command, vector<bool> array) {
     int result{0};
     const std::unordered_map<std::string, std::function<void()>> command_table{
-            {"WORRY_COUNT", [&]() { cout << "Worry count" << endl; }},
+            {"WORRY_COUNT", [&]() { cout << get_worries_count(array) << endl; }},
             {"WORRY",       [&]() { cout << "Worry [i] " << endl; }},
             {"QUIET",       [&]() { cout << "Quiet " << endl; }},
             {"COME",        [&]() { cout << "COME" << endl; }},
@@ -57,7 +57,7 @@ int main() {
     for (int i = 0; i < query_num; ++i) {
         string operation_code;
         cin >> operation_code;
-        if (command_manager(operation_code)) {
+        if (command_manager(operation_code, people_list)) {
             cout << "Unknown operation" << endl;
         }
     }
