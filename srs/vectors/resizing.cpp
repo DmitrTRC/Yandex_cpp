@@ -16,6 +16,7 @@ WORRY_COUNT: узнать количество беспокоящихся люд
 #include <iostream>
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -29,22 +30,57 @@ u_long get_worries_count(const vector<bool> &item_list) {
     return count;
 }
 
+int command_manager(const string &command) {
+
+}
+
 int main() {
     vector<bool> people_list;
-    int q;
-    cin >> q;
+    int query_num;
+    cin >> query_num;
 
-    for (int i = 0; i < q; ++i) {
-        string operation_code;
-        cin >> operation_code;
+    // Command selection
 
-        if (operation_code == "WORRY_COUNT"s) {
-            // обработка запроса WORRY_COUNT
-            std::cout << get_worries_count(people_list);
+    const std::unordered_map<std::string, std::function<void()>> m{
+            {"WORRY_COUNT", [&]() { cout << "Worry count" << endl; }},
+            {"WORRY",       [&]() { cout << "Worry [i] " << endl; }},
+            {"QUIET",       [&]() { cout << "Quiet " << endl; }},
+            {"COME",        [&]() { cout << "COME" << endl; }},
+    };
+
+
+    const auto end = m.end();
+    std::vector<std::string> strings{"one", "two", "three", "foobar"};
+    for (const auto &s : strings) {
+        auto it = m.find(s);
+        if (it != end) {
+            it->second();
         } else {
-
-            // обработка остальных запросов
-
+            result = -1;
         }
+        std::cout << s << " " << result << std::endl;
     }
+}
+
+for (
+int i = 0;
+i<query_num;
+++i) {
+string operation_code;
+cin >>
+operation_code;
+
+
+if (operation_code == "WORRY_COUNT"s) {
+// обработка запроса WORRY_COUNT
+std::cout <<
+get_worries_count(people_list)
+<<
+std::endl;
+} else {
+
+// обработка остальных запросов
+
+}
+}
 }
