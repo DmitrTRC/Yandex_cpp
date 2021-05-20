@@ -19,8 +19,18 @@ WORRY_COUNT: узнать количество беспокоящихся люд
 
 using namespace std;
 
+u_long get_worries_count(const vector<bool> &item_list) {
+    u_long count{0};
+    for (auto item:item_list) {
+        if (item) {
+            count++;
+        }
+    }
+    return count;
+}
+
 int main() {
-    vector<bool> item_status;
+    vector<bool> people_list;
     int q;
     cin >> q;
 
@@ -30,7 +40,7 @@ int main() {
 
         if (operation_code == "WORRY_COUNT"s) {
             // обработка запроса WORRY_COUNT
-
+            std::cout << get_worries_count(people_list);
         } else {
 
             // обработка остальных запросов
