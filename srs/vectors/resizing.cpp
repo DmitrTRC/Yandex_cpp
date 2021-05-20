@@ -29,6 +29,7 @@ vector<string> split_line(std::string line, const std::string &delimiter = " ") 
         com_line.push_back(token);
         line.erase(0, pos + delimiter.length());
     }
+    if (com_line.empty()) { com_line.push_back(line); }
     return com_line;
 }
 
@@ -44,14 +45,15 @@ u_long get_worries_count(const vector<bool> &item_list) {
 
 int command_manager(const string &command, vector<bool> array) {
     int result{0};
+    vector<string> command_line = split_line(command);
     const std::unordered_map<std::string, std::function<void()>> command_table{
-            {"WORRY_COUNT", [&]() { cout << get_worries_count(arr) << endl; }},
+            {"WORRY_COUNT", [&]() { cout << get_worries_count(array) << endl; }},
             {"WORRY",       [&]() { cout << "Worry [i] " << endl; }},
             {"QUIET",       [&]() { cout << "Quiet " << endl; }},
             {"COME",        [&]() { cout << "COME" << endl; }},
     };
 
-    auto item = command_table.find(command);
+    auto item = command_table.find(command_line.at(0));
     if (item != command_table.end()) {
         item->second();
     } else {
