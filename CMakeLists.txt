@@ -11,6 +11,7 @@ add_executable(IsPalindrome srs/functions/IsPalindrome.cpp)
 add_executable(SplitIntoWords srs/functions/SplitIntoWords.cpp)
 add_executable(Factorial srs/functions/factorial.cpp)
 add_executable(PalindromeFilter srs/functions/PalindromeFilter.cpp)
+add_executable(Uniq_Counter srs/functions/uniq_counter.cpp)
 
 
 
