@@ -6,8 +6,10 @@
 
 using namespace std;
 
-void IsPalindrome(string s) {
-    int answer{0};
-    if (s == string(s.rbegin(), s.rend())) answer = 1;
-    cout << answer << endl;
+bool IsPalindrome(string source_string) {
+    return source_string == string(source_string.rbegin(), source_string.rend());
+}
+
+int main() {
+
 }
