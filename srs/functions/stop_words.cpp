@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <set>
 
 using namespace std;
 
@@ -20,11 +21,25 @@ vector<string> SplitIntoWords(std::string line, const std::string &delimiter = "
     return ret_line;
 }
 
+vector<string> StopWordsFilter(vector<string> stop_srs, vector<string> request) {
+    set<string> stop_set(stop_srs.begin(), stop_srs.end());
+    set<string> request_set(request.begin(), request.end());
+    vector<string> result_vec;
+    set_difference(request.begin(), request.end(), stop_set.begin(), stop_set.end(), back_inserter(result_vec));
+    return result_vec;
+}
+
 int main() {
+    string stop_words;
     string query;
+
+    getline(cin, stop_words);
     getline(cin, query);
 
-    for (string word : SplitIntoWords(query)) {
-        cout << '[' << word << ']' << endl;
+    vector<string> result = StopWordsFilter(SplitIntoWords(stop_words), SplitIntoWords(query));
+
+    for (const auto &item: result) {
+        cout << "[" << item << "]" << endl;
     }
+
 }
