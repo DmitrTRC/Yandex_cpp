@@ -18,3 +18,7 @@ vector<string> PalindromeFilter(const vector<string> &words_array, const int &mi
     }
     return result_array;
 }
+
+int main() {
+    return 0;
+}
