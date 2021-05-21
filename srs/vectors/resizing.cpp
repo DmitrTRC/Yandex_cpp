@@ -34,8 +34,8 @@ vector<string> split_line(std::string line, const std::string &delimiter = " ") 
     return com_line;
 }
 
-u_long get_worries_count(const vector<bool> &item_list) {
-    u_long count{0};
+unsigned long get_worries_count(const vector<bool> &item_list) {
+    unsigned long count{0};
     for (auto item:item_list) {
         if (item) {
             count++;

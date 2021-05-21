@@ -10,7 +10,7 @@
 
 using namespace std;
 
-u_int CalculateSimilarity(vector<string> first_srs, vector<string> second_srs) {
+unsigned CalculateSimilarity(vector<string> first_srs, vector<string> second_srs) {
     sort(first_srs.begin(), first_srs.end());
     sort(second_srs.begin(), second_srs.end());
     vector<string>result_vec;
