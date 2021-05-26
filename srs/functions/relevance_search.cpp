@@ -7,39 +7,48 @@
 #include <string>
 #include <algorithm>
 #include <set>
+#include <sstream>
+
 
 using namespace std;
 
-unsigned CalculateSimilarity(vector<string> first_srs, vector<string> second_srs) {
-    sort(first_srs.begin(), first_srs.end());
-    sort(second_srs.begin(), second_srs.end());
-    vector<string>result_vec;
-    set_intersection(first_srs.begin(), first_srs.end(), second_srs.begin(), second_srs.end(), back_inserter(result_vec));
-    return result_vec.size();
 
-    // выведите размер пересечения множеств слов
+bool IsStopWord(const set<string> &stop_words, const string &word) {
+    if (stop_words.count(word)) {
+        return true;
+    } else return false;
 }
 
-vector<string> SplitIntoWords(std::string line, const std::string &delimiter = " ") {
-    vector<string> ret_line;
-    size_t pos = 0;
+
+vector<string> SplitIntoWords(const std::string &text, char delimiter = ' ',
+                              bool set_filter = false,
+                              const set<string> &stop_words = set<std::string>()) {
+    std::vector<std::string> tokens;
     std::string token;
-    while ((pos = line.find(delimiter)) != std::string::npos) {
-        token = line.substr(0, pos);
-        ret_line.push_back(token);
-        line.erase(0, pos + delimiter.length());
+    std::istringstream tss(text);
+    while (getline(tss, token, delimiter)) {
+        if (set_filter) {
+            if (IsStopWord(stop_words, token)) continue;
+        }
+        tokens.push_back(token);
     }
-    ret_line.push_back(line);
-    return ret_line;
+    return tokens;
 }
+
 
 int main() {
-    string query, description;
 
+    string stop_words_string;
+    string query;
+    char delimiter = ' ';
+
+    getline(cin, stop_words_string);
     getline(cin, query);
-    getline(cin, description);
 
-    cout << CalculateSimilarity(SplitIntoWords(query), SplitIntoWords(description)) << endl;
-
-    return 0;
+    vector<string> stop_words_vec = SplitIntoWords(stop_words_string);
+    set<string> Stop_Words_Set(stop_words_vec.begin(), stop_words_vec.end());
+    vector<string> result_vec = SplitIntoWords(query, delimiter, true, Stop_Words_Set);
+    for (const auto &item: result_vec) {
+        cout << "[" << item << "]" << endl;
+    }
 }

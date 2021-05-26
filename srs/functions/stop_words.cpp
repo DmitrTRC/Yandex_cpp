@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <set>
+#include <algorithm>
 
 using namespace std;
 
@@ -25,7 +26,7 @@ vector<string> StopWordsFilter(vector<string> stop_srs, vector<string> request) 
     set<string> stop_set(stop_srs.begin(), stop_srs.end());
     set<string> request_set(request.begin(), request.end());
     vector<string> result_vec;
-    set_difference(request.begin(), request.end(), stop_set.begin(), stop_set.end(), back_inserter(result_vec));
+    set_difference (request.begin(), request.end(), stop_set.begin(), stop_set.end(), back_inserter(result_vec));
     return result_vec;
 }
 
