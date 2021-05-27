@@ -7,59 +7,52 @@
 #include <string>
 #include <set>
 #include <sstream>
-#include <iterator>
 
 
 using namespace std;
 
-
-//vector<string> SplitIntoWords(const std::string text) {
-//    std::istringstream iss(text);
-//    std::vector<std::string> results(std::istream_iterator<std::string>{iss},
-//                                     std::istream_iterator<std::string>());
-//    return results;
-//}
-
-//vector<string> SplitIntoWords(string text) {
-//    vector<string> words;
-//    string word;
-//    for (int i = 0; i < text.size(); ++i) {
-//        if (text[i] == ' ') {
-//            words.push_back(word);
-//            word = ""s;
-//        } else {
-//            word += text[i];
-//        }
-//    }
-//    words.push_back(word);
-//
-//    return words;
-//}
-std::vector<std::string> SplitIntoWords(const std::string& s, char delimiter = ' ')
-{
-    std::vector<std::string> tokens;
-    std::string token;
-    std::istringstream tokenStream(s);
-    while (std::getline(tokenStream, token, delimiter))
-    {
-        tokens.push_back(token);
+vector<string> TokenizeString(const string &text) {
+    vector<string> tokens;
+    string word;
+    for (char i : text) {
+        if (i == ' ') {
+            tokens.push_back(word);
+            word = ""s;
+        } else word += i;
     }
+    tokens.push_back(word);
     return tokens;
 }
+
+//std::vector<std::string> TokenizeString(const std::string &srs_string, const char delimiter = ' ') {
+//    std::vector<std::string> tokens;
+//    std::istringstream iss(srs_string);
+//    std::string word;
+//    while (getline(iss, word, delimiter)) {
+//        tokens.push_back(word);
+//    }
+//    return tokens;
+//}
+
 std::set<string> NormalizeStopWords(const std::string &srs_words) {
     std::set<string> result_set;
-    for (const auto &word : SplitIntoWords(srs_words)) result_set.insert(word);
+    for (const auto &word : TokenizeString(srs_words)) result_set.insert(word);
     return result_set;
 }
 
 vector<string> FilterQuery(const std::string &query, const std::set<string> &stop_words) {
     std::vector<string> result_vec;
-    for (const auto &word : SplitIntoWords(query)) {
+    for (const auto &word : TokenizeString(query)) {
         if (!stop_words.count(word)) result_vec.push_back(word);
     }
     return result_vec;
 }
 
+void PrintQuery(const std::vector<string> &query) {
+    for (auto const &item : query) {
+        cout << "[" << item << "]" << endl;
+    }
+}
 
 int main() {
     string stop_words_string;
@@ -68,7 +61,5 @@ int main() {
     getline(cin, stop_words_string);
     getline(cin, query);
 
-    for (auto const &item : FilterQuery(query, NormalizeStopWords(stop_words_string))) {
-        cout << "[" << item << "]" << endl;
-    }
+    PrintQuery(FilterQuery(query, NormalizeStopWords(stop_words_string)));
 }
