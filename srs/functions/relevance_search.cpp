@@ -5,50 +5,45 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <algorithm>
 #include <set>
 #include <sstream>
+#include <iterator>
 
 
 using namespace std;
 
 
-bool IsStopWord(const set<string> &stop_words, const string &word) {
-    if (stop_words.count(word)) {
-        return true;
-    } else return false;
+vector<string> SplitIntoWords(const std::string &text) {
+    std::istringstream iss(text);
+    std::vector<std::string> results(std::istream_iterator<std::string>{iss},
+                                     std::istream_iterator<std::string>());
+    return results;
+
 }
 
+std::set<string> NormalizeStopWords(const std::string &srs_words) {
+    std::set<string> result_set;
+    for (const auto &word : SplitIntoWords(srs_words)) result_set.insert(word);
+    return result_set;
+}
 
-vector<string> SplitIntoWords(const std::string &text, char delimiter = ' ',
-                              bool set_filter = false,
-                              const set<string> &stop_words = set<std::string>()) {
-    std::vector<std::string> tokens;
-    std::string token;
-    std::istringstream tss(text);
-    while (getline(tss, token, delimiter)) {
-        if (set_filter) {
-            if (IsStopWord(stop_words, token)) continue;
-        }
-        tokens.push_back(token);
+vector<string> FilterQuery(const std::string &query, const std::set<string> &stop_words) {
+    std::vector<string> result_vec;
+    for (const auto &word : SplitIntoWords(query)) {
+        if (!stop_words.count(word)) result_vec.push_back(word);
     }
-    return tokens;
+    return result_vec;
 }
 
 
 int main() {
-
     string stop_words_string;
     string query;
-    char delimiter = ' ';
 
     getline(cin, stop_words_string);
     getline(cin, query);
 
-    vector<string> stop_words_vec = SplitIntoWords(stop_words_string);
-    set<string> Stop_Words_Set(stop_words_vec.begin(), stop_words_vec.end());
-    vector<string> result_vec = SplitIntoWords(query, delimiter, true, Stop_Words_Set);
-    for (const auto &item: result_vec) {
+    for (auto const &item : FilterQuery(query, NormalizeStopWords(stop_words_string))) {
         cout << "[" << item << "]" << endl;
     }
 }
