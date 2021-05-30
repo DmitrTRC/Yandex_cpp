@@ -1,46 +1,65 @@
 //
 // Created by Dmitry Morozov on 21/5/21.
 //
+
 #include <iostream>
-#include <string>
 #include <vector>
-#include <algorithm>
+#include <string>
 #include <set>
+#include <sstream>
+
 
 using namespace std;
 
-vector<string> SplitIntoWords(std::string line, const std::string &delimiter = " ") {
-    vector<string> ret_line;
-    size_t pos = 0;
-    std::string token;
-    while ((pos = line.find(delimiter)) != std::string::npos) {
-        token = line.substr(0, pos);
-        ret_line.push_back(token);
-        line.erase(0, pos + delimiter.length());
+vector<string> TokenizeString(const string &text) {
+    vector<string> tokens;
+    string word;
+    for (char i : text) {
+        if (i == ' ') {
+            tokens.push_back(word);
+            word = ""s;
+        } else word += i;
     }
-    ret_line.push_back(line);
-    return ret_line;
+    tokens.push_back(word);
+    return tokens;
 }
 
-vector<string> StopWordsFilter(vector<string> stop_srs, vector<string> request) {
-    set<string> stop_set(stop_srs.begin(), stop_srs.end());
-    set<string> request_set(request.begin(), request.end());
-    vector<string> result_vec;
-    set_difference(request.begin(), request.end(), stop_set.begin(), stop_set.end(), back_inserter(result_vec));
+//std::vector<std::string> TokenizeString(const std::string &srs_string, const char delimiter = ' ') {
+//    std::vector<std::string> tokens;
+//    std::istringstream iss(srs_string);
+//    std::string word;
+//    while (getline(iss, word, delimiter)) {
+//        tokens.push_back(word);
+//    }
+//    return tokens;
+//}
+
+std::set<string> NormalizeStopWords(const std::string &srs_words) {
+    std::set<string> result_set;
+    for (const auto &word : TokenizeString(srs_words)) result_set.insert(word);
+    return result_set;
+}
+
+vector<string> FilterQuery(const std::string &query, const std::set<string> &stop_words) {
+    std::vector<string> result_vec;
+    for (const auto &word : TokenizeString(query)) {
+        if (!stop_words.count(word)) result_vec.push_back(word);
+    }
     return result_vec;
 }
 
-int main() {
-    string stop_words;
-    string query;
-
-    getline(cin, stop_words);
-    getline(cin, query);
-
-    vector<string> result = StopWordsFilter(SplitIntoWords(stop_words), SplitIntoWords(query));
-
-    for (const auto &item: result) {
+void PrintQuery(const std::vector<string> &query) {
+    for (auto const &item : query) {
         cout << "[" << item << "]" << endl;
     }
+}
 
+int main() {
+    string stop_words_string;
+    string query;
+
+    getline(cin, stop_words_string);
+    getline(cin, query);
+
+    PrintQuery(FilterQuery(query, NormalizeStopWords(stop_words_string)));
 }
