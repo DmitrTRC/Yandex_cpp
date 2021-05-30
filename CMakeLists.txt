@@ -17,3 +17,5 @@ add_executable(Stop_Words srs/functions/stop_words.cpp)
 add_executable(TMP srs/functions/tmp.cpp)
 add_executable(Updateifgreater srs/References/Updateifgreater.cpp)
 add_executable(MoveStrings srs/References/MoveStrings.cpp)
+add_executable(Secrets srs/References/secrets.cpp)
+
