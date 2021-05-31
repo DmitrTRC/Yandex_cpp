@@ -51,7 +51,7 @@ int main() {
     // Read stop words
     string stop_words_joined;
     getline(cin, stop_words_joined);
-    set<string> stop_words = ParseStopWords(stop_words_joined);
+    const set<string> stop_words = ParseStopWords(stop_words_joined);
 
     // Read query
     string query;
