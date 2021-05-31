@@ -56,7 +56,7 @@ int main() {
     // Read query
     string query;
     getline(cin, query);
-    vector<string> query_words = ParseQuery(query, stop_words);
+    const vector<string> query_words = ParseQuery(query, stop_words);
 
     for (const string &word : query_words) {
         cout << '[' << word << ']' << endl;
