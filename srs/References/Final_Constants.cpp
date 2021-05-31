@@ -12,10 +12,10 @@
 using namespace std;
 
 
-vector<string> SplitIntoWords(const string& text) {
+vector<string> SplitIntoWords(const string &text) {
     vector<string> words;
     string word;
-    for (char c : text) {
+    for (const auto &c : text) {
         if (c == ' ') {
             words.push_back(word);
             word = "";
@@ -28,17 +28,17 @@ vector<string> SplitIntoWords(const string& text) {
     return words;
 }
 
-set<string> ParseStopWords(const string& text) {
+set<string> ParseStopWords(const string &text) {
     set<string> stop_words;
-    for (const string& word : SplitIntoWords(text)) {
+    for (const string &word : SplitIntoWords(text)) {
         stop_words.insert(word);
     }
     return stop_words;
 }
 
-vector<string> ParseQuery(const string& text, const set<string>& stop_words) {
+vector<string> ParseQuery(const string &text, const set<string> &stop_words) {
     vector<string> words;
-    for (const string& word : SplitIntoWords(text)) {
+    for (const string &word : SplitIntoWords(text)) {
         if (stop_words.count(word) == 0) {
             words.push_back(word);
         }
@@ -58,7 +58,7 @@ int main() {
     getline(cin, query);
     vector<string> query_words = ParseQuery(query, stop_words);
 
-    for (const string& word : query_words) {
+    for (const string &word : query_words) {
         cout << '[' << word << ']' << endl;
     }
 }
