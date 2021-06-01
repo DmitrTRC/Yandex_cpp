@@ -27,11 +27,11 @@ void print_list(vector<string> &list) {
 }
 
 int main() {
-
     string query;
     getline(cin, query);
     vector<string> words;
     string word;
     split(query, words);
     print_list(words);
+    return 0;
 }
