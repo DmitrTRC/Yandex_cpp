@@ -119,9 +119,15 @@ void AddDocument(map<string, set<int>> &word_to_documents,
     }
 }
 
+// FIXME
 vector<int> FindDocuments(const map<string, set<int>> &word_to_documents,
                           const set<string> &stop_words,
                           const string &query) {
+    set<int> result_id_set; // Returns documents ID set
+    for ( auto const &word : SplitIntoWords(query)){
+            cout << word << endl;
+    }
+
     // напишите тут код функции
 }
 
