@@ -68,7 +68,6 @@ string ReadLine() {
 int ReadLineWithNumber() {
     string s;
     getline(cin, s);
-    // функция stoi переводит строку в число типа int
     int result = stoi(s);
     return result;
 }
@@ -124,11 +123,15 @@ vector<int> FindDocuments(const map<string, set<int>> &word_to_documents,
                           const set<string> &stop_words,
                           const string &query) {
     set<int> result_id_set; // Returns documents ID set
-    for ( auto const &word : SplitIntoWords(query)){
-            cout << word << endl;
-    }
+    for (auto const &word : SplitIntoWordsNoStop(query, stop_words)) {
+        if (word_to_documents.count(word)) {
+            auto id_set = word_to_documents.at(word);
+            result_id_set.insert(id_set.begin(), id_set.end());
+        }
 
-    // напишите тут код функции
+    }
+    vector<int> result_vec(result_id_set.begin(), result_id_set.end());
+    return result_vec;
 }
 
 int main() {
