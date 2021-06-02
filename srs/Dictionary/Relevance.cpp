@@ -26,7 +26,7 @@ int ReadLineWithNumber() {
     return result;
 }
 
-vector<string> SplitIntoWords(const string& text) {
+vector<string> SplitIntoWords(const string &text) {
     vector<string> words;
     string word;
     for (const char c : text) {
@@ -42,17 +42,17 @@ vector<string> SplitIntoWords(const string& text) {
     return words;
 }
 
-set<string> ParseStopWords(const string& text) {
+set<string> ParseStopWords(const string &text) {
     set<string> stop_words;
-    for (const string& word : SplitIntoWords(text)) {
+    for (const string &word : SplitIntoWords(text)) {
         stop_words.insert(word);
     }
     return stop_words;
 }
 
-vector<string> SplitIntoWordsNoStop(const string& text, const set<string>& stop_words) {
+vector<string> SplitIntoWordsNoStop(const string &text, const set<string> &stop_words) {
     vector<string> words;
-    for (const string& word : SplitIntoWords(text)) {
+    for (const string &word : SplitIntoWords(text)) {
         if (stop_words.count(word) == 0) {
             words.push_back(word);
         }
@@ -60,30 +60,28 @@ vector<string> SplitIntoWordsNoStop(const string& text, const set<string>& stop_
     return words;
 }
 
-void AddDocument(map<string, set<int>>& word_to_documents,
-                 const set<string>& stop_words,
+void AddDocument(map<string, set<int>> &word_to_documents,
+                 const set<string> &stop_words,
                  int document_id,
-                 const string& document) {
-    for (const string& word : SplitIntoWordsNoStop(document, stop_words)) {
+                 const string &document) {
+    for (const string &word : SplitIntoWordsNoStop(document, stop_words)) {
         word_to_documents[word].insert(document_id);
     }
 }
 
-vector<int> FindDocuments(const map<string, set<int>>& word_to_documents,
-                          const set<string>& stop_words,
-                          const string& query) {
+// FIXME
+vector<pair<int, int>> FindDocuments(const map<string, set<int>> &word_to_documents,
+                                     const set<string> &stop_words,
+                                     const string &query) {
+    // TODO Создайте map<int, int> document_to_relevance, чтобы хранить релевантность по идентификатору документа.
     const vector<string> query_words = SplitIntoWordsNoStop(query, stop_words);
     set<int> document_ids;
-    for (const string& word : query_words) {
+    for (const string &word : query_words) {
         if (word_to_documents.count(word) == 0) {
             continue;
         }
-        for (const int document_id : word_to_documents.at(word)) {
-            document_ids.insert(document_id);
-        }
-        // А лучше так:
-        // const auto& local_document_ids = word_to_documents.at(word);
-        // document_ids.insert(local_document_ids.begin(), local_document_ids.end());
+        const auto &local_document_ids = word_to_documents.at(word);
+        document_ids.insert(local_document_ids.begin(), local_document_ids.end());
     }
 
     return {document_ids.begin(), document_ids.end()};
@@ -102,7 +100,7 @@ int main() {
     }
 
     const string query = ReadLine();
-    for (auto [document_id, relevance] : FindDocuments(word_to_documents, stop_words, query)) {
+    for (auto[document_id, relevance] : FindDocuments(word_to_documents, stop_words, query)) {
         cout << "{ document_id = "s << document_id << ", relevance = "s << relevance << " }"s << endl;
     }
 }
