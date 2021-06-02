@@ -69,27 +69,23 @@ void AddDocument(map<string, set<int>> &word_to_documents,
     }
 }
 
-// FIXME
+
 vector<pair<int, int>> FindDocuments(const map<string, set<int>> &word_to_documents,
                                      const set<string> &stop_words,
                                      const string &query) {
-    // TODO Создайте map<int, int> document_to_relevance, чтобы хранить релевантность по идентификатору документа.
+
     const vector<string> query_words = SplitIntoWordsNoStop(query, stop_words);
-    set<int> document_ids;
-    map<int, int> results; // ?
+    map<int, int> relevance_map;
+
     for (const string &word : query_words) {
         if (word_to_documents.count(word) == 0) {
             continue;
         }
         for (const auto document_id  : word_to_documents.at(word)) { // Iterating throughout documents_id
-            ++results[document_id];
+            ++relevance_map[document_id];
         }
-
-//        const auto &local_document_ids = word_to_documents.at(word);
-//        document_ids.insert(local_document_ids.begin(), local_document_ids.end());
     }
-
-    return {results.begin(), results.end()};
+    return {relevance_map.begin(), relevance_map.end()};
 }
 
 
