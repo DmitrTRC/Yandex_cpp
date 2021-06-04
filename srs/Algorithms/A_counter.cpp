@@ -5,11 +5,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
-int CountStartsWithA(const vector<string>& xs) {
-    // посчитайте число строк, начинающихся на букву A
+int CountStartsWithA(const vector<string> &xs) {
+    //TODO  посчитайте число строк, начинающихся на букву A
+    return count_if(xs.begin(), xs.end(), [](string word) { return tolower(word.at(0)) == 'a'; });
 }
 
 int main() {
