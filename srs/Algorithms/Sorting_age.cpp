@@ -11,6 +11,7 @@
 using namespace std;
 
 typedef std::pair<std::string, int> p_pair;
+
 // TODO Задача прошла 0/10 проверок
 //
 //Возможные проблемы:
@@ -36,6 +37,8 @@ int main() {
              }
         );
     }
+    reverse(personal_base.begin(), personal_base.end());
+
     for (const auto &[Name, Age]: personal_base) {
         std::cout << Name << std::endl;
     }
