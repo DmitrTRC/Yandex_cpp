@@ -4,8 +4,10 @@ project(Yandex_cpp)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(A_count srs/Algorithms/A_counter.cpp)
-add_executable(Algorithm srs/Algorithms/Lesson_1_1.cpp)
+
+add_executable(SortingAge srs/Algorithms/Sorting_age.cpp)
+#add_executable(A_count srs/Algorithms/A_counter.cpp)
+#add_executable(Algorithm srs/Algorithms/Lesson_1_1.cpp)
 #add_exebcutable(Relevance srs/Dictionary/Relevance.cpp)
 #add_executable(ParseQuery srs/Dictionary/Parse_query.cpp)
 #add_executable(Birds srs/Dictionary/Birds1.cpp)
