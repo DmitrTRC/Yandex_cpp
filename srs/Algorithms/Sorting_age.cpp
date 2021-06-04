@@ -15,6 +15,7 @@ typedef std::pair<std::string, int> p_pair;
 int main() {
     int people_number{0};
     std::vector<p_pair> personal_base;
+    cin >> people_number;
     for (int i = 0; i < people_number; ++i) {
         std::string name;
         int age;
@@ -27,10 +28,9 @@ int main() {
                  return l.first < r.first;
              }
         );
-//        reverse(personal_base.begin(), personal_base.end());
     }
     for (const auto &[Name, Age]: personal_base) {
-        std::cout << Name << " " << Age << std::endl;
+        std::cout << Name << std::endl;
     }
     return 0;
 }
