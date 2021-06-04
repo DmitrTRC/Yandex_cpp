@@ -24,13 +24,13 @@ int main() {
         personal_base.emplace_back(std::make_pair(name, age));
         sort(personal_base.begin(), personal_base.end(), [](const p_pair &l, const p_pair &r) {
                  if (l.second != r.second) {
-                     return l.second < r.second;
+                     return l.second > r.second;
                  }
                  return l.first < r.first;
              }
         );
     }
-    reverse(personal_base.begin(), personal_base.end());
+
 
     for (const auto &[Name, Age]: personal_base) {
         std::cout << Name << std::endl;
