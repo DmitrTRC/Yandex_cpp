@@ -4,7 +4,9 @@ project(Yandex_cpp)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Relevance srs/Dictionary/Relevance.cpp)
+
+add_executable(Algorithm srs/Algorithms/Lesson_1_1.cpp)
+#add_exebcutable(Relevance srs/Dictionary/Relevance.cpp)
 #add_executable(ParseQuery srs/Dictionary/Parse_query.cpp)
 #add_executable(Birds srs/Dictionary/Birds1.cpp)
 #add_executable(split_vector srs/vectors/split_vector.cpp)
