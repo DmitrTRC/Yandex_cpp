@@ -4,7 +4,7 @@ project(Yandex_cpp)
 
 set(CMAKE_CXX_STANDARD 20)
 
-
+add_executable(Medianna srs/Algorithms/Medianna.cpp)
 add_executable(SortingAge srs/Algorithms/Sorting_age.cpp)
 #add_executable(A_count srs/Algorithms/A_counter.cpp)
 #add_executable(Algorithm srs/Algorithms/Lesson_1_1.cpp)
