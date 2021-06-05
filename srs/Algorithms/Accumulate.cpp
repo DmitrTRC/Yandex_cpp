@@ -4,10 +4,12 @@
 
 #include <iostream>
 #include <vector>
+#include <numeric>
 
 using namespace std;
 
 double Average(const vector<int>& xs) {
+    //TODO
     // посчитайте среднее арифметическое: поделите сумму на размер
     // суммирование начните с 0.0 - тогда результат выражения будет вещественным числом
 }
