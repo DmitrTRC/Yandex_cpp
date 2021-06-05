@@ -17,14 +17,14 @@ pair<bool, double> CalcMedian(vector<double> samples) {
     // иначе - {false, 0}
     // обратите внимание - вектор принимаем по значению,
     // так как его придётся немного подпортить, чтобы вернуть ответ
-    pair<bool, double> result{false, 0.0};
+    pair<bool, double> result{false, 0.0f};
     if (!samples.empty()) {
         sort(samples.begin(), samples.end());
-        double vec_center = samples.size() / 2;
+        double vec_center_right = floor(samples.size() / 2.0f);
         if (samples.size() % 2) {
-            result = make_pair(true, floor(vec_center));
+            result = make_pair(true, samples.at(vec_center_right));
         } else {
-            result = make_pair(true, (samples.at(floor(vec_center)) + samples.at(ceil(vec_center))) / 2.0);
+            result = make_pair(true, (samples.at(vec_center_right) + samples.at(vec_center_right - 1)) / 2.0f);
         }
     }
     return result;
