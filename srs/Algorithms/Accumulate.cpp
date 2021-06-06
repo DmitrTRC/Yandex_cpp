@@ -8,10 +8,12 @@
 
 using namespace std;
 
-double Average(const vector<int>& xs) {
+double Average(const vector<int> &xs) {
     //TODO
     // посчитайте среднее арифметическое: поделите сумму на размер
     // суммирование начните с 0.0 - тогда результат выражения будет вещественным числом
+
+    return accumulate(xs.begin(), xs.end(), 0.0f) / xs.size();
 }
 
 int main() {
