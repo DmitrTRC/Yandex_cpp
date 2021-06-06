@@ -10,6 +10,8 @@
 
 using namespace std;
 
+const unsigned MAX_RESULT_DOCUMENT_COUNT = 5;
+
 string ReadLine() {
     string s;
     getline(cin, s);
@@ -67,7 +69,7 @@ void AddDocument(map<string, set<int>> &word_to_documents,
 }
 
 // For each document returns its id and relevance
-vector<pair<int, int>> FindDocuments(
+vector<pair<int, int>> FindAllDocuments(
         const map<string, set<int>> &word_to_documents,
         const set<string> &stop_words,
         const string &query) {
@@ -89,6 +91,31 @@ vector<pair<int, int>> FindDocuments(
     return found_documents;
 }
 
+template<typename T>
+vector<T> slicing(vector<T> const &v, int X, int Y) {
+
+    // Begin and End iterator
+    auto first = v.begin() + X;
+    auto last = v.begin() + Y + 1;
+
+    // Copy the element
+    vector<T> vector(first, last);
+
+    // Return the results
+    return vector;
+}
+
+vector<pair<int, int>> FindTopDocuments(const std::vector<pair<int, int>> &relevance_data) {
+    vector<pair<int, int >> v_sorted(relevance_data.size());
+    partial_sort_copy(begin(relevance_data), end(relevance_data), begin(v_sorted), end(v_sorted));
+    //reverse(begin (v_sorted), end(v_sorted));
+    unsigned slice_pointer = {MAX_RESULT_DOCUMENT_COUNT};
+    if (relevance_data.size() < MAX_RESULT_DOCUMENT_COUNT) slice_pointer = relevance_data.size();
+    auto v_end = v_sorted.end();
+    auto slice_point = v_sorted.end() - slice_pointer;
+
+    return vector<pair<int, int>>(v_end, slice_point);
+}
 
 int main() {
     const string stop_words_joined = ReadLine();
@@ -102,7 +129,7 @@ int main() {
     }
 
     const string query = ReadLine();
-    for (auto[document_id, relevance] : FindDocuments(word_to_documents, stop_words, query)) {
+    for (auto[document_id, relevance] : FindTopDocuments(FindAllDocuments(word_to_documents, stop_words, query))) {
         cout << "{ document_id = "s << document_id << ", relevance = "s << relevance << " }"s << endl;
     }
 }
