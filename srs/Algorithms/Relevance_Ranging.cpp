@@ -109,12 +109,9 @@ vector<pair<int, int>> FindTopDocuments(const std::vector<pair<int, int>> &relev
     vector<pair<int, int >> v_sorted(relevance_data.size());
     partial_sort_copy(begin(relevance_data), end(relevance_data), begin(v_sorted), end(v_sorted));
     //reverse(begin (v_sorted), end(v_sorted));
-    unsigned slice_pointer = {MAX_RESULT_DOCUMENT_COUNT};
+    unsigned slice_pointer = MAX_RESULT_DOCUMENT_COUNT;
     if (relevance_data.size() < MAX_RESULT_DOCUMENT_COUNT) slice_pointer = relevance_data.size();
-    auto v_end = v_sorted.end();
-    auto slice_point = v_sorted.end() - slice_pointer;
-
-    return vector<pair<int, int>>(v_end, slice_point);
+    return vector <pair<int, int>>(v_sorted.begin(), v_sorted.end());
 }
 
 int main() {
