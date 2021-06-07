@@ -10,7 +10,6 @@
 
 using namespace std;
 
-typedef std::pair<std::string, int> p_pair;
 typedef std::pair<int, int> relevance_pair;
 
 
@@ -90,7 +89,7 @@ vector<pair<int, int>> FindAllDocuments(
 
     vector<pair<int, int>> found_documents;
     for (auto[document_id, relevance] : document_to_relevance) {
-        found_documents.push_back({document_id, relevance});
+        found_documents.emplace_back(make_pair(document_id, relevance));
     }
     return found_documents;
 }
