@@ -4,6 +4,7 @@ project(Yandex_cpp)
 
 set(CMAKE_CXX_STANDARD 20)
 
+add_executable(CountNames srs/Algorithms/CountNames.cpp)
 add_executable(Relevane_Ranging srs/Algorithms/Relevance_Ranging.cpp)
 #add_executable(StrCat srs/Algorithms/AddStopWords.cpp)
 #add_executable(Accum srs/Algorithms/Accumulate.cpp)
