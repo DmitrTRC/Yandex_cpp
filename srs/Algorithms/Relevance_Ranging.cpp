@@ -10,6 +10,10 @@
 
 using namespace std;
 
+typedef std::pair<std::string, int> p_pair;
+typedef std::pair<int, int> relevance_pair;
+
+
 const unsigned MAX_RESULT_DOCUMENT_COUNT = 5;
 
 string ReadLine() {
@@ -91,27 +95,19 @@ vector<pair<int, int>> FindAllDocuments(
     return found_documents;
 }
 
-template<typename T>
-vector<T> slicing(vector<T> const &v, int X, int Y) {
-
-    // Begin and End iterator
-    auto first = v.begin() + X;
-    auto last = v.begin() + Y + 1;
-
-    // Copy the element
-    vector<T> vector(first, last);
-
-    // Return the results
-    return vector;
-}
 
 vector<pair<int, int>> FindTopDocuments(const std::vector<pair<int, int>> &relevance_data) {
-    vector<pair<int, int >> v_sorted(relevance_data.size());
-    partial_sort_copy(begin(relevance_data), end(relevance_data), begin(v_sorted), end(v_sorted));
-    //reverse(begin (v_sorted), end(v_sorted));
-    unsigned slice_pointer = MAX_RESULT_DOCUMENT_COUNT;
-    if (relevance_data.size() < MAX_RESULT_DOCUMENT_COUNT) slice_pointer = relevance_data.size();
-    return vector <pair<int, int>>(v_sorted.begin(), v_sorted.end());
+    vector<pair<int, int >> v_sorted(relevance_data.begin(), relevance_data.end());
+    sort(v_sorted.begin(), v_sorted.end(), [](const relevance_pair &l, const relevance_pair &r) {
+        if (l.second != r.second) {
+            return l.second > r.second;
+        }
+        return l.first > r.first;
+    });
+
+    unsigned slice_position = MAX_RESULT_DOCUMENT_COUNT;
+    if (relevance_data.size() < MAX_RESULT_DOCUMENT_COUNT) slice_position = relevance_data.size();
+    return vector<pair<int, int>>(v_sorted.begin(), v_sorted.begin() + slice_position );
 }
 
 int main() {
