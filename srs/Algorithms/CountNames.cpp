@@ -66,15 +66,15 @@ int main() {
         cout << "Time difference Long = "s << chrono::duration_cast<chrono::microseconds>(end - begin).count()
              << "[µs]"s << endl;
     }
-    cout << "Testing fast version" << endl;
-    for (int i = 0; i < SAMPLE_COUNT; ++i) {
-        auto begin = chrono::steady_clock::now();
-        for (auto Item : CountNames(s, v)) {
-            cout << Item << " ";
-        }
-        cout << endl;
-        auto end = chrono::steady_clock::now();
-        cout << "Time difference Short = "s << chrono::duration_cast<chrono::microseconds>(end - begin).count()
-             << "[µs]"s << endl;
-    }
+//    cout << "Testing fast version" << endl;
+//    for (int i = 0; i < SAMPLE_COUNT; ++i) {
+//        auto begin = chrono::steady_clock::now();
+//        for (auto Item : CountNames(s, v)) {
+//            cout << Item << " ";
+//        }
+//        cout << endl;
+//        auto end = chrono::steady_clock::now();
+//        cout << "Time difference Short = "s << chrono::duration_cast<chrono::microseconds>(end - begin).count()
+//             << "[µs]"s << endl;
+//    }
 }
