@@ -29,11 +29,11 @@ vector<int> CountNamesLong(const set<string> &storage, const vector<string> &can
     return output;
 }
 
-vector<unsigned> CountNames(const set<string> &storage, const vector<string> &candidates) {
+vector<unsigned> CountNames(const set<string> &storage, const vector<string> &candidates, bool pre_alloc = true) {
     vector<unsigned> result_vec;
-    result_vec.reserve(candidates.size());
+    if (pre_alloc)result_vec.reserve(candidates.size());
     for (auto &name: candidates) {
-        result_vec.push_back(storage.count (name));
+        result_vec.push_back(storage.count(name));
     }
     return result_vec;
 
@@ -66,15 +66,27 @@ int main() {
         cout << "Time difference Long = "s << chrono::duration_cast<chrono::microseconds>(end - begin).count()
              << "[µs]"s << endl;
     }
-//    cout << "Testing fast version" << endl;
-//    for (int i = 0; i < SAMPLE_COUNT; ++i) {
-//        auto begin = chrono::steady_clock::now();
-//        for (auto Item : CountNames(s, v)) {
-//            cout << Item << " ";
-//        }
-//        cout << endl;
-//        auto end = chrono::steady_clock::now();
-//        cout << "Time difference Short = "s << chrono::duration_cast<chrono::microseconds>(end - begin).count()
-//             << "[µs]"s << endl;
-//    }
+    cout << "Testing fast version" << endl;
+    for (int i = 0; i < SAMPLE_COUNT; ++i) {
+        auto begin = chrono::steady_clock::now();
+        for (auto Item : CountNames(s, v)) {
+            cout << Item << " ";
+        }
+        cout << endl;
+        auto end = chrono::steady_clock::now();
+        cout << "Time difference Short = "s << chrono::duration_cast<chrono::microseconds>(end - begin).count()
+             << "[µs]"s << endl;
+    }
+    cout << "Testing no memory pre-allocation version" << endl;
+    for (int i = 0; i < SAMPLE_COUNT; ++i) {
+        auto begin = chrono::steady_clock::now();
+        for (auto Item : CountNames(s, v, false)) {
+            cout << Item << " ";
+        }
+        cout << endl;
+        auto end = chrono::steady_clock::now();
+        cout << "Time difference NoAlloc = "s << chrono::duration_cast<chrono::microseconds>(end - begin).count()
+             << "[µs]"s << endl;
+    }
+
 }
