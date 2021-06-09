@@ -1,5 +1,0 @@
-C:/Users/dmitrymorozov/source/repos/DmitrTRC/Yandex_cpp/out/build/x64-Debug/CMakeFiles/Async_demo.dir
-C:/Users/dmitrymorozov/source/repos/DmitrTRC/Yandex_cpp/out/build/x64-Debug/CMakeFiles/CountNames.dir
-C:/Users/dmitrymorozov/source/repos/DmitrTRC/Yandex_cpp/out/build/x64-Debug/CMakeFiles/Relevane_Ranging.dir
-C:/Users/dmitrymorozov/source/repos/DmitrTRC/Yandex_cpp/out/build/x64-Debug/CMakeFiles/ALL_BUILD.dir
-C:/Users/dmitrymorozov/source/repos/DmitrTRC/Yandex_cpp/out/build/x64-Debug/CMakeFiles/ZERO_CHECK.dir

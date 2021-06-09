@@ -31,3 +31,7 @@
 *.out
 *.app
 .idea/
+
+# CMAKE
+.vs/
+out/
