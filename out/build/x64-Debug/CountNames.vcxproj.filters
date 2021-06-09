@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\dmitrymorozov\source\repos\DmitrTRC\Yandex_cpp\srs\Algorithms\CountNames.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\dmitrymorozov\source\repos\DmitrTRC\Yandex_cpp\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9C0FB95F-D600-3AEB-9DC0-A45D8F4FCD5F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

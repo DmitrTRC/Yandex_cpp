@@ -8,6 +8,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <execution>
 
 using namespace std;
 
@@ -100,8 +101,8 @@ vector<pair<int, int>> FindTopDocuments(
         const string& query) {
     auto matched_documents = FindAllDocuments(word_to_documents, stop_words, query);
 
-    sort(matched_documents.begin(), matched_documents.end());
-    reverse(matched_documents.begin(), matched_documents.end());
+    sort(execution ::par,matched_documents.begin(), matched_documents.end());
+    reverse(execution::par, matched_documents.begin(), matched_documents.end());
     if (matched_documents.size() > MAX_RESULT_DOCUMENT_COUNT) {
         matched_documents.resize(MAX_RESULT_DOCUMENT_COUNT);
     }
