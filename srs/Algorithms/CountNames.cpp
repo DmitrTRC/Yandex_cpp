@@ -67,6 +67,9 @@ int main() {
              << "[µs]"s << endl;
     }
     cout << "Testing fast version" << endl;
+
+    long long average_time{0};
+
     for (int i = 0; i < SAMPLE_COUNT; ++i) {
         auto begin = chrono::steady_clock::now();
         for (auto Item : CountNames(s, v)) {
@@ -74,6 +77,8 @@ int main() {
         }
         cout << endl;
         auto end = chrono::steady_clock::now();
+        auto delta_time =  chrono::duration_cast<chrono::microseconds>(end - begin).count();
+        average_time += delta_time;
         cout << "Time difference Short = "s << chrono::duration_cast<chrono::microseconds>(end - begin).count()
              << "[µs]"s << endl;
     }
