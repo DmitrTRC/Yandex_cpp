@@ -6,8 +6,8 @@
 using namespace std;
 
 struct Document {
-    int doc_id;
     int relevance;
+    int doc_id;
 };
 
 vector<string> SplitIntoWords(const string &text) {
@@ -37,7 +37,7 @@ vector<string> SplitIntoWordsNoStop(const string &text, const set<string> &stop_
 }
 
 // For each document returns its relevance and id
-vector<pair<int, int>> FindAllDocuments(
+vector<Document> FindAllDocuments(
         const map<string, set<int>> &word_to_documents,
         const set<string> &stop_words,
         const string &query) {
@@ -53,7 +53,7 @@ vector<pair<int, int>> FindAllDocuments(
         }
     }
 
-    vector<pair<int, int>> matched_documents;
+    vector<Document> matched_documents;
     for (auto[document_id, relevance] : document_to_relevance) {
         matched_documents.push_back({relevance, document_id});
     }
