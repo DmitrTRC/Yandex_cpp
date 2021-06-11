@@ -10,4 +10,3 @@ bool   HasDocumentGreaterRelevance(const Document &lhs , const Document &rhs) {
 int main() {
 
 	return 0;
-}
