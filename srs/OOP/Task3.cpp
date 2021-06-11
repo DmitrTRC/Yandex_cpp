@@ -11,6 +11,12 @@ using namespace std;
 
 const int MAX_RESULT_DOCUMENT_COUNT = 5;
 
+struct Document
+{
+    int id;
+    int relevance;
+};
+
 string ReadLine() {
     string s;
     getline(cin, s);
@@ -69,7 +75,7 @@ void AddDocument(map<string, set<int>>& word_to_documents,
 }
 
 // For each document returns its relevance and id
-vector<pair<int, int>> FindAllDocuments(
+vector<Document> FindAllDocuments(
     const map<string, set<int>>& word_to_documents,
     const set<string>& stop_words,
     const string& query) {
@@ -84,28 +90,25 @@ vector<pair<int, int>> FindAllDocuments(
         }
     }
 
-    vector<pair<int, int>> found_documents;
+    vector<Document> found_documents;
     for (auto [document_id, relevance] : document_to_relevance) {
-        found_documents.push_back({ relevance, document_id });
+        found_documents.push_back({  document_id , relevance});
     }
 
     return found_documents;
 }
-
+// TODO
 // For each document returns its id and relevance
-vector<pair<int, int>> FindTopDocuments(
+vector<Document> FindTopDocuments(
     const map<string, set<int>>& word_to_documents,
     const set<string>& stop_words,
     const string& query) {
     auto matched_documents = FindAllDocuments(word_to_documents, stop_words, query);
 
     sort(execution::par, matched_documents.begin(), matched_documents.end());
-    reverse(matched_documents.begin(), matched_documents.end());
+    reverse(execution :: par, matched_documents.begin(), matched_documents.end());
     if (matched_documents.size() > MAX_RESULT_DOCUMENT_COUNT) {
         matched_documents.resize(MAX_RESULT_DOCUMENT_COUNT);
-    }
-    for (auto& matched_document : matched_documents) {
-        swap(matched_document.first, matched_document.second);
     }
     return matched_documents;
 }
