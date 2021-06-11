@@ -10,10 +10,6 @@
 #include <vector>
 #include <execution>
 
-
-//#include <execute>
-
-
 using namespace std;
 
 const int MAX_RESULT_DOCUMENT_COUNT = 5;
@@ -105,8 +101,8 @@ vector<pair<int, int>> FindTopDocuments(
         const string& query) {
     auto matched_documents = FindAllDocuments(word_to_documents, stop_words, query);
 
-    sort(execution::par,matched_documents.begin(), matched_documents.end());
-    reverse(execution::par,matched_documents.begin(), matched_documents.end());
+    sort(execution ::par,matched_documents.begin(), matched_documents.end());
+    reverse(execution::par, matched_documents.begin(), matched_documents.end());
     if (matched_documents.size() > MAX_RESULT_DOCUMENT_COUNT) {
         matched_documents.resize(MAX_RESULT_DOCUMENT_COUNT);
     }
