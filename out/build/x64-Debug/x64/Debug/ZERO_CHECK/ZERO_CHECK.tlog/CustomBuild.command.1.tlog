@@ -1,0 +1,10 @@
+^C:\USERS\99843\SOURCE\REPOS\DMITRTRC\YANDEX_CPP\OUT\BUILD\X64-DEBUG\CMAKEFILES\1626B0ABD501BF4B3C57C0B8975DA468\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/99843/source/repos/DmitrTRC/Yandex_cpp -BC:/Users/99843/source/repos/DmitrTRC/Yandex_cpp/out/build/x64-Debug --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/99843/source/repos/DmitrTRC/Yandex_cpp/out/build/x64-Debug/Yandex_cpp.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
