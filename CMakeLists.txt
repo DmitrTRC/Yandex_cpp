@@ -4,16 +4,14 @@ project(Yandex_cpp)
 
 set(CMAKE_CXX_STANDARD 20)
 
-
-add_executable(OOP srs/OOP/Task1.cpp "srs/OOP/Task3.cpp")
-#add_executable(Async_demo srs/Algorithms/async_demo.cpp)
+add_executable(Task1 srs/OOP/Task1.cpp)
 #add_executable(CountNames srs/Algorithms/CountNames.cpp)
 #add_executable(Relevane_Ranging srs/Algorithms/Relevance_Ranging.cpp)
 #add_executable(StrCat srs/Algorithms/AddStopWords.cpp)
 #add_executable(Accum srs/Algorithms/Accumulate.cpp)
 #add_executable(Medianna srs/Algorithms/Medianna.cpp)
 #add_executable(SortingAge srs/Algorithms/Sorting_age.cpp)
-#add_executable(A_count srs/Algorithms/A_counter.cpp)
+#add_executable(A_count srs/Algorithms/A_counter.cpp) 
 #add_executable(Algorithm srs/Algorithms/Lesson_1_1.cpp)
 #add_exebcutable(Relevance srs/Dictionary/Relevance.cpp)
 #add_executable(ParseQuery srs/Dictionary/Parse_query.cpp)
