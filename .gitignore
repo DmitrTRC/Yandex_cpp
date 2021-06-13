@@ -35,3 +35,5 @@
 # CMAKE
 .vs/
 out/
+build/
+
