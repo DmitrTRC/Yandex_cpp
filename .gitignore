@@ -34,3 +34,8 @@
 .vs/
 .out/
 
+# CMAKE
+.vs/
+out/
+build/
+
