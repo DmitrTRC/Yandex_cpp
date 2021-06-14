@@ -17,6 +17,10 @@ struct Document
     int relevance;
 };
 
+bool   HasDocumentGreaterRelevance(const Document& lhs, const Document& rhs) {
+    return lhs.relevance > rhs.relevance;
+}
+
 string ReadLine() {
     string s;
     getline(cin, s);
@@ -105,8 +109,8 @@ vector<Document> FindTopDocuments(
     const string& query) {
     auto matched_documents = FindAllDocuments(word_to_documents, stop_words, query);
 
-    sort(execution::par, matched_documents.begin(), matched_documents.end());
-    reverse(execution :: par, matched_documents.begin(), matched_documents.end());
+    sort(execution::par, matched_documents.begin(), matched_documents.end(), HasDocumentGreaterRelevance);
+    reverse(execution::par, matched_documents.begin(), matched_documents.end());
     if (matched_documents.size() > MAX_RESULT_DOCUMENT_COUNT) {
         matched_documents.resize(MAX_RESULT_DOCUMENT_COUNT);
     }
