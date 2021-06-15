@@ -1,0 +1,9 @@
+{
+    "C_Cpp.vcpkg.enabled": false,
+    "C_Cpp.vcFormat.indent.preserveWithinParentheses": true,
+    "C_Cpp.default.cStandard": "c17",
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.formatting": "vcFormat",
+    "C_Cpp.autocompleteAddParentheses": true,
+    "cmake.configureOnOpen": true
+}

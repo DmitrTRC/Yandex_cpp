@@ -9,14 +9,8 @@
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
-      "ctestCommandArgs": "",
-      "variables": [
-        {
-          "name": "VCPKG_APPLOCAL_DEPS",
-          "value": "False",
-          "type": "BOOL"
-        }
-      ]
+      "ctestCommandArgs": ""
+      
     },
     {
       "name": "x64-Debug-2",
